@@ -1,9 +1,13 @@
+with open('wifi_login.txt', 'r') as f:
+    ssid = f.readline().strip()
+    password = f.readline().strip()
+
 import network
 import time
 
 wifi = network.WLAN(network.STA_IF)
 wifi.active(True)
-wifi.contact('wifi name', 'wifi password')
+wifi.connect(ssid, password)
 
 while not wifi.isconnected():
     time.sleep(1)
