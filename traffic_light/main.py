@@ -1,10 +1,10 @@
 import machine
 import time
 
-green = machine.Pin(19, machine.Pin.OUT)
-yellow = machine.Pin(18, machine.Pin.OUT)
+green = machine.Pin(18, machine.Pin.OUT)
+yellow = machine.Pin(19, machine.Pin.OUT)
 red = machine.Pin(21, machine.Pin.OUT)
-relay = machine.Pin(23, machine.Pin.OUT)
+relay = machine.Pin(15, machine.Pin.OUT)
 
 lights = ['green', 'yellow', 'red']
 
@@ -24,3 +24,4 @@ for light in lights:
     green.off()
     time.sleep(.5)
 print("done!")
+
