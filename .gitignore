@@ -1,2 +1,3 @@
 .DS_Store
-remote_control_web_server/wifi_login.txt
+remote_control_web_server/wifi_creds.py
+*/__pycache__/
