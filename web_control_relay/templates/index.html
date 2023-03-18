@@ -1,0 +1,41 @@
+{% args led_value, light_value, relay_value %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ESP32</title>
+    <link rel="stylesheet" href="static/css/custom.css">
+</head>
+<body>
+
+    <nav class="nav" tabindex="-1" onclick="this.focus()">
+      <div class="container">
+        <a class="pagename current" href="#">ESP32</a>
+        <a href="#">Documents</a>
+      </div>
+    </nav>
+    <button class="btn-close btn btn-sm">×</button>
+    <div class="container">
+      <div class="hero">
+        <h1 class="title">MicroPython Webserver</h1>
+        <div class="toggle-div">
+            <p class="label">LED</p>
+            <input type="checkbox" id="led" onclick="toggle_led()" {% if led_value %} checked {% endif %}/>
+            <label for="led">Toggle</label>
+        </div>
+        <div class="toggle-div">
+            <p class="label">Light</p>
+            <input type="checkbox" id="light" onclick="toggle_light()" {% if light_value %} checked {% endif %}>
+            <label for="light">Toggle</label>
+        </div>
+        <div class="toggle-div">
+            <p class="label">Motor</p>
+            <input type="checkbox" id="motor" onclick="toggle_relay()" {% if relay_value %} checked {% endif %}>
+            <label for="motor">Toggle</label>
+        </div>
+      </div>
+    </div>
+    
+    <script src="static/js/index.js"></script>
+</body>
+</html>
