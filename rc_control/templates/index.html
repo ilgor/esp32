@@ -62,7 +62,15 @@
     </div>
 
     <script>
+      let current_action = "";
+      let buttons = ["forward", "backward", "right", "left"];
+
       function call_api(action) {
+        if (current_action === action) {
+          return;
+        } else if (action === "stop") {
+          current_action = "";
+        }
         fetch("/" + action)
           .then((res) => {
             console.log("action: " + action);
@@ -73,6 +81,10 @@
       }
 
       function handleMove(e) {
+        var isTouchDevice = "ontouchstart" in document.documentElement;
+        if (isTouchDevice && e.type === "mousedown") {
+          return;
+        }
         call_api(e.target.id);
       }
 
@@ -80,7 +92,6 @@
         call_api("stop");
       }
 
-      var buttons = ["forward", "backward", "right", "left"];
       for (buttonId of buttons) {
         const el = document.getElementById(buttonId);
         el.addEventListener("mousedown", handleMove);
@@ -89,27 +100,17 @@
         el.addEventListener("touchend", handleStop);
       }
 
-      let current_action = "";
+      document.addEventListener("keyup", handleStop);
       document.addEventListener("keydown", function (event) {
-        if (event.key === "w" && current_action !== "w") {
-          current_action = "w";
+        if (event.key === "w") {
           call_api("forward");
-        } else if (event.key === "d" && current_action !== "d") {
+        } else if (event.key === "d") {
           call_api("right");
-          current_action = "d";
-        } else if (event.key === "a" && current_action !== "a") {
+        } else if (event.key === "a") {
           call_api("left");
-          current_action = "a";
-        } else if (event.key === "s" && current_action !== "s") {
+        } else if (event.key === "s") {
           call_api("backward");
-          current_action = "s";
         }
-      });
-
-      document.addEventListener("keyup", function (event) {
-        console.log("Keyup event fired: " + event.key);
-        call_api("stop");
-        current_action = "";
       });
     </script>
   </body>
